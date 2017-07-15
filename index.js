@@ -25,8 +25,26 @@ tg.router
 		return $.message.text.includes('@Meow958')
 	}), new MeowController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text.includes('gambe') ||
-					 $.message.text.includes('spezzo')
-	}), new GambeController())
+		return $.message.text.includes('scelta') ||
+				   $.message.text.includes('scelta') ||
+					 $.message.text.includes('scelgo') ||
+					 $.message.text.includes('sceglierò') ||
+					 $.message.text.includes('scegliere')
+	}, 'sceltatua'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text.includes('@Meow958')
+	}), new MeowController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text == 'ti'
+	}, 'spezzo'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text == 'ti spezzo'
+	}, 'le'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text == 'ti spezzo le'
+	}, 'gambe'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text == 'ti spezzo le gambe'
+	}, 'sceltatua'), new GambeController())
 	.otherwise(new OtherwiseController());
 
