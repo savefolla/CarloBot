@@ -14,13 +14,19 @@ const OtherwiseController = require('./controllers/otherwiseController');
 const RandomController = require('./controllers/randomController');
 const MeowController = require('./controllers/meowController');
 const CustomFilterCommand = require('./node_modules/telegram-node-bot/lib/routing/commands/CustomFilterCommand');
+const DonateController = require('./controllers/donateController');
+const GambeController = require('./controllers/gambeController');
 
 // routing
 tg.router
 	.when(new Telegram.TextCommand('/random'), new RandomController())
+	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.text.includes('@Meow958')
 	}), new MeowController())
-	.when(new Telegram.TextCommand('/Alessia'), new MeowController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text.includes('gambe') ||
+					 $.message.text.includes('spezzo')
+	}), new GambeController())
 	.otherwise(new OtherwiseController());
 
