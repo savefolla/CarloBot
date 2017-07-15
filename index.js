@@ -14,5 +14,5 @@ const OtherwiseController = require('./controllers/otherwiseController');
 const RandomController = require('./controllers/randomController');
 
 // routing
-tg.router.when(new Telegram.TextCommand('/random'), new OtherwiseController())
+tg.router.when(new Telegram.TextCommand('/random'), new RandomController())
 	.otherwise(new OtherwiseController());
