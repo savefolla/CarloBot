@@ -32,9 +32,6 @@ tg.router
 					 $.message.text.includes('scegliere')
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text.includes('@Meow958')
-	}), new MeowController())
-	.when(new CustomFilterCommand($ => {
 		return $.message.text == 'ti'
 	}, 'spezzo'), new GambeController())
 	.when(new CustomFilterCommand($ => {
