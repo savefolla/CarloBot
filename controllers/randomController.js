@@ -6,8 +6,15 @@ const db = require('../db/db');
 class RandomController extends Telegram.TelegramBaseController {
 	handle($) {
 		var n = Math.floor(Math.random()*db.length);
-		$.sendPhoto(Telegram.InputFile.byFilePath(db[n].link));
-		// $.sendMessage('Messaggio casuale'); // riscrivere in modo che mandi un messaggio casuale
+		if(db[n].type === 'photo') {
+			$.sendPhoto(Telegram.InputFile.byId(db[n].link));
+		};
+		if(db[n].type === 'voice') {
+			$.sendVoice(Telegram.InputFile.byId(db[n].link));
+		};
+		if(db[n].type === 'video') {
+			$.sendVideo(Telegram.InputFile.byId(db[n].link));
+		};
 	}
 }
 

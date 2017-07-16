@@ -16,32 +16,60 @@ const MeowController = require('./controllers/meowController');
 const CustomFilterCommand = require('./node_modules/telegram-node-bot/lib/routing/commands/CustomFilterCommand');
 const DonateController = require('./controllers/donateController');
 const GambeController = require('./controllers/gambeController');
+const AdminController = require('./controllers/adminController');
 
 // routing
 tg.router
 	.when(new Telegram.TextCommand('/random'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text.includes('@Meow958')
+		if($.message.text != null) {
+			return $.message.text.includes('@Meow958');
+		} else {
+			return false;
+		};
 	}), new MeowController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text.includes('scelta') ||
-				   $.message.text.includes('scelta') ||
-					 $.message.text.includes('scelgo') ||
-					 $.message.text.includes('sceglierò') ||
-					 $.message.text.includes('scegliere')
+		if($.message.text != null) {
+			return $.message.text.includes('scelta') ||
+						$.message.text.includes('scelta') ||
+						$.message.text.includes('scelgo') ||
+						$.message.text.includes('sceglierò') ||
+						$.message.text.includes('scegliere')
+		} else {
+			return false;
+		}
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text == 'ti'
+		if($.message.text != null) {
+			return $.message.text == 'ti'
+		} else {
+			return false;
+		}
 	}, 'spezzo'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text == 'ti spezzo'
+		if($.message.text != null) {
+			return $.message.text == 'ti spezzo'
+		} else {
+			return false;
+		}
 	}, 'le'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text == 'ti spezzo le'
+		if($.message.text != null) {
+			return $.message.text == 'ti spezzo le'
+		} else {
+			return false;
+		}
 	}, 'gambe'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text == 'ti spezzo le gambe'
+		if($.message.text != null) {
+			return $.message.text == 'ti spezzo le gambe'
+		} else {
+			return false;
+		}
 	}, 'sceltatua'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo';
+	}), new AdminController())
 	.otherwise(new OtherwiseController());
 
