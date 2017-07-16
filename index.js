@@ -17,6 +17,7 @@ const CustomFilterCommand = require('./node_modules/telegram-node-bot/lib/routin
 const DonateController = require('./controllers/donateController');
 const GambeController = require('./controllers/gambeController');
 const AdminController = require('./controllers/adminController');
+const CarloController = require('./controllers/carloController');
 
 // routing
 tg.router
@@ -31,43 +32,50 @@ tg.router
 	}), new MeowController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text.includes('scelta') ||
-						$.message.text.includes('scelta') ||
-						$.message.text.includes('scelgo') ||
-						$.message.text.includes('sceglierò') ||
-						$.message.text.includes('scegliere')
+			return $.message.text.includes('scelta') || $.message.text.includes('Scelta') ||
+						$.message.text.includes('scelta') || $.message.text.includes('Scelta') ||
+						$.message.text.includes('scelgo') || $.message.text.includes('Scelgo') ||
+						$.message.text.includes('sceglierò') || $.message.text.includes('Sceglierò') ||
+						$.message.text.includes('scegliere') || $.message.text.includes('Scegliere')
 		} else {
 			return false;
 		}
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text == 'ti'
+			return $.message.text == 'ti' || $.message.text == 'Ti'
 		} else {
 			return false;
 		}
 	}, 'spezzo'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text == 'ti spezzo'
+			return $.message.text == 'ti spezzo' || $.message.text == 'Ti spezzo'
 		} else {
 			return false;
 		}
 	}, 'le'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text == 'ti spezzo le'
+			return $.message.text == 'ti spezzo le' || $.message.text == 'Ti spezzo le'
 		} else {
 			return false;
 		}
 	}, 'gambe'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text == 'ti spezzo le gambe'
+			return $.message.text == 'ti spezzo le gambe' || $.message.text == 'Ti spezzo le gambe'
 		} else {
 			return false;
 		}
 	}, 'sceltatua'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text != null) {
+			return $.message.text.includes('Carlo') || $.message.text.includes('carlo');
+		} else {
+			return false;
+		};
+	}), new CarloController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
