@@ -71,7 +71,7 @@ tg.router
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text.includes('Carlo') || $.message.text.includes('carlo');
+			return $.message.text.includes(' Carlo ') || $.message.text.includes(' carlo ');
 		} else {
 			return false;
 		};
