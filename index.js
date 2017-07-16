@@ -18,6 +18,8 @@ const DonateController = require('./controllers/donateController');
 const GambeController = require('./controllers/gambeController');
 const AdminController = require('./controllers/adminController');
 const CarloController = require('./controllers/carloController');
+const SweController = require('./controllers/sweController');
+const P2Controller = require('./controllers/p2Controller');
 
 // routing
 tg.router
@@ -34,6 +36,9 @@ tg.router
 		if($.message.text != null) {
 			return $.message.text.includes('scelta') || $.message.text.includes('Scelta') ||
 						$.message.text.includes('scelta') || $.message.text.includes('Scelta') ||
+						$.message.text.includes('scelto') || $.message.text.includes('Scelto') ||
+						$.message.text.includes('Ho') || $.message.text.includes('ho') ||
+						$.message.text.includes('abbiamo') || $.message.text.includes('Abbiamo') ||
 						$.message.text.includes('scelgo') || $.message.text.includes('Scelgo') ||
 						$.message.text.includes('sceglierò') || $.message.text.includes('Sceglierò') ||
 						$.message.text.includes('scegliere') || $.message.text.includes('Scegliere')
@@ -76,6 +81,20 @@ tg.router
 			return false;
 		};
 	}), new CarloController())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text != null) {
+			return $.message.text.includes('swe');
+		} else {
+			return false;
+		};
+	}), new SweController())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text != null) {
+			return $.message.text.includes('p2');
+		} else {
+			return false;
+		};
+	}), new P2Controller())
 	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
