@@ -69,7 +69,7 @@ tg.router
 		}
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo';
+		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
 	.otherwise(new OtherwiseController());
 

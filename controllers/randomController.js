@@ -15,6 +15,9 @@ class RandomController extends Telegram.TelegramBaseController {
 		if(db[n].type === 'video') {
 			$.sendVideo(Telegram.InputFile.byId(db[n].link));
 		};
+		if(db[n].type === 'text') {
+			$.sendMessage(db[n].text);
+		};
 	}
 }
 

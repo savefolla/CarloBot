@@ -6,6 +6,18 @@ const fs = require('fs');
 
 class AdminController extends Telegram.TelegramBaseController {
 	handle($) {
+		if($.message.text && !$.message.text.includes('/')) {
+			db.push({
+				'type': 'text',
+				'text': $.message.text
+			});
+			fs.writeFile('db/db.json', JSON.stringify(db), function(err) {
+				if(err) {
+						return console.log(err);
+				}
+				console.log("aggiunto testo " + $.message.text);
+			}); 			
+		}
 		if($.message.photo) {
 			db.push({
 				'type': 'photo',
@@ -42,7 +54,6 @@ class AdminController extends Telegram.TelegramBaseController {
 				console.log("aggiunto video " + $.message.video.fileId);
 			}); 			
 		}
-		/* se il messaggio e foto, voiceNote o video aggiungi l'id al db */
 	}
 }
 
