@@ -20,6 +20,7 @@ const AdminController = require('./controllers/adminController');
 const CarloController = require('./controllers/carloController');
 const SweController = require('./controllers/sweController');
 const P2Controller = require('./controllers/p2Controller');
+const SituationController = require('./controllers/situationController');
 
 // routing
 tg.router
@@ -95,6 +96,9 @@ tg.router
 			return false;
 		};
 	}), new P2Controller())
+	.when(new CustomFilterCommand($ => {
+		return $.message.text;
+	}), new SituationController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
