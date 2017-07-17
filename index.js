@@ -20,6 +20,7 @@ const AdminController = require('./controllers/adminController');
 const CarloController = require('./controllers/carloController');
 const SweController = require('./controllers/sweController');
 const P2Controller = require('./controllers/p2Controller');
+const P3Controller = require('./controllers/p3Controller');
 const SituationController = require('./controllers/situationController');
 
 // routing
@@ -96,6 +97,13 @@ tg.router
 			return false;
 		};
 	}), new P2Controller())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text != null) {
+			return $.message.text.includes('p3');
+		} else {
+			return false;
+		};
+	}), new P3Controller())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text) {
 			return true;
