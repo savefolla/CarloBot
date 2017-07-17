@@ -10,7 +10,7 @@ class MeowController extends Telegram.TelegramBaseController {
 		if(hours >= 19 || hours < 7 || day == 0 || day == 7) {
 			$.sendMessage('È ubriaca');
 		}else{
-			$.sendMessage('Aspetto: 7.5\nCarattere: 6.9\nCapacità: 7');
+			$.sendMessage('Dove sei? Adesso vi trovo.');
 		}
 	}
 }
