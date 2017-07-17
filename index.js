@@ -97,7 +97,11 @@ tg.router
 		};
 	}), new P2Controller())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text;
+		if($.message.text) {
+			return true;
+		}else{
+			return false;
+		};
 	}), new SituationController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
