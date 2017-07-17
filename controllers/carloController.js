@@ -1,7 +1,6 @@
 'use strict';
 
 const Telegram = require('telegram-node-bot');
-const db = require('../db/db');
 
 class CarloController extends Telegram.TelegramBaseController {
 	handle($) {

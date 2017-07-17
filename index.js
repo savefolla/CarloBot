@@ -7,6 +7,8 @@ const Telegram = require('telegram-node-bot'),
 		workers: 1 //controllare numero
 	});
 
+const GetMsg = require('./controllers/getMsg');
+
 // per comandi non riconosciuti/implementati
 const OtherwiseController = require('./controllers/otherwiseController');
 
@@ -22,9 +24,13 @@ const SweController = require('./controllers/sweController');
 const P2Controller = require('./controllers/p2Controller');
 const P3Controller = require('./controllers/p3Controller');
 const SituationController = require('./controllers/situationController');
+const FromCarloController = require('./controllers/fromCarloController');
 
 // routing
 tg.router
+	/*.when(new CustomFilterCommand($ => {
+		return true;
+	}), new GetMsg())*/
 	.when(new Telegram.TextCommand('/random'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
@@ -112,7 +118,15 @@ tg.router
 		};
 	}), new SituationController())
 	.when(new CustomFilterCommand($ => {
+		if($.message.from.id == '17694064') {
+			return true;
+		}else{
+			return false;
+		};
+	}), new FromCarloController())
+	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
 	.otherwise(new OtherwiseController());
 
+	
