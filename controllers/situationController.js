@@ -35,7 +35,7 @@ class SituationController extends Telegram.TelegramBaseController {
 		var hours = date.getHours();
 		var minutes = date.getMinutes();
 		var seconds = date.getSeconds();
-		if(!minutes%5 && !seconds%5){
+		if(minutes/5%1==0 && seconds/5%1==0){
 			$.sendMessage(situations[hours]);
 		}
 	}
