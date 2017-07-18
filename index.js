@@ -30,7 +30,7 @@ const FromCarloController = require('./controllers/fromCarloController');
 tg.router
 	/*.when(new CustomFilterCommand($ => {
 		return true;
-	}), new GetMsg())*/
+	}), new GetMsg())*/ 
 	.when(new Telegram.TextCommand('/random'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
@@ -125,8 +125,6 @@ tg.router
 		};
 	}), new FromCarloController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero';
+		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'Meow958' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
 	.otherwise(new OtherwiseController());
-
-	
