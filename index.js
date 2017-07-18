@@ -84,7 +84,7 @@ tg.router
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text != null) {
-			return $.message.text.includes(' Carlo ') || $.message.text.includes(' carlo ');
+			return $.message.text.includes(' Carlo ') || $.message.text.includes(' carlo ') || $.message.text.includes('@carlocingolato') || $.message.text.includes('@uomocingolato');
 		} else {
 			return false;
 		};
@@ -124,6 +124,13 @@ tg.router
 			return false;
 		};
 	}), new FromCarloController())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text.includes('ok')) {
+			return true;
+		}else{
+			return false;
+		};
+	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'Meow958' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())
