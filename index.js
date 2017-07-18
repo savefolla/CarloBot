@@ -25,12 +25,13 @@ const P2Controller = require('./controllers/p2Controller');
 const P3Controller = require('./controllers/p3Controller');
 const SituationController = require('./controllers/situationController');
 const FromCarloController = require('./controllers/fromCarloController');
+const RidiController = require('./controllers/ridiController');
 
 // routing
 tg.router
 	/*.when(new CustomFilterCommand($ => {
 		return true;
-	}), new GetMsg())*/ 
+	}), new GetMsg())*/
 	.when(new Telegram.TextCommand('/random'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
@@ -110,6 +111,13 @@ tg.router
 			return false;
 		};
 	}), new P3Controller())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text != null) {
+			return $.message.text.includes('😂') || $.message.text.includes('haha') || $.message.text.includes('lol') || $.message.text.includes('lel') ;
+		} else {
+			return false;
+		};
+	}), new RidiController())
 	.when(new CustomFilterCommand($ => {
 		if($.message.text) {
 			return true;
