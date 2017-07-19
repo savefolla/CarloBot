@@ -72,12 +72,18 @@ const situations = [" non farmi arrabbiare.",
 
 class SituationController extends Telegram.TelegramBaseController {
 	handle($) {
+		const voti = 22;
+		const sit = 7;
 		var date = new Date($.message.date*1000);
 		var hours = date.getHours();
 		var minutes = date.getMinutes();
 		var seconds = date.getSeconds();
-		if(minutes/5%1==0 && seconds/5%1==0){
-			$.sendMessage(situations[hours]);
+		if(minutes/voti%1==0 && seconds/voti%1==0){
+			$.sendMessage('USCITI I VOTI');
+		}else{
+			if(minutes/sit%1==0 && seconds/sit%1==0){
+				$.sendMessage(situations[hours]);
+			}
 		}
 	}
 }

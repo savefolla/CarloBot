@@ -26,6 +26,7 @@ const P3Controller = require('./controllers/p3Controller');
 const SituationController = require('./controllers/situationController');
 const FromCarloController = require('./controllers/fromCarloController');
 const RidiController = require('./controllers/ridiController');
+const AltrimentiController = require('./controllers/altrimentiController');
 
 // routing
 tg.router
@@ -139,6 +140,13 @@ tg.router
 			return false;
 		};
 	}, 'sceltatua'), new GambeController())
+	.when(new CustomFilterCommand($ => {
+		if($.message.text.includes('altrimenti')) {
+			return true;
+		}else{
+			return false;
+		};
+	}), new AltrimentiController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'Meow958' || $.message.chat.username == 'ohalbero';
 	}), new AdminController())

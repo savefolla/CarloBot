@@ -75,7 +75,7 @@ class CarloController extends Telegram.TelegramBaseController {
 		console.log("messaggio di carlo");
 		var date = new Date($.message.date*1000);
 		var seconds = date.getSeconds();
-		if(seconds/5%1==0){
+		if(seconds/7%1==0){
 			var n = Math.floor(Math.random()*insulti.length);
 			$.sendMessage(insulti[n]);
 		}		
