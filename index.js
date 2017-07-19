@@ -153,14 +153,14 @@ tg.router
 		};
 	}), new FromCarloController())
 	.when(new CustomFilterCommand($ => {
-		if($.message.text.includes('ok' && tg.sveglio == true)) {
+		if($.message.text != null && $.message.text.includes('ok' && tg.sveglio == true)) {
 			return true;
 		}else{
 			return false;
 		};
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
-		if($.message.text.includes('altrimenti') && tg.sveglio == true) {
+		if($.message.text != null && $.message.text.includes('altrimenti') && tg.sveglio == true) {
 			return true;
 		}else{
 			return false;
