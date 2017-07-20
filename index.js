@@ -42,7 +42,7 @@ tg.router
 			return true;
 		} else {
 			return false;
-		};
+		}
 	}, 'dormi'), new SvegliaController())
 	.when(new CustomFilterCommand($ => {
 		if(tg.sveglio == false && $.message.text == 'sveglia carlo'){
@@ -50,7 +50,7 @@ tg.router
 			return true;
 		} else {
 			return false;
-		};
+		}
 	}, 'sveglia'), new SvegliaController())
 	.when(new Telegram.TextCommand('/random'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
