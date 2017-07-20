@@ -4,7 +4,7 @@ const Telegram = require('telegram-node-bot');
 const db = require('../db/db');
 
 class RandomController extends Telegram.TelegramBaseController {
-	handle($) {
+	randomHandler($) {
 		var n = Math.floor(Math.random()*db.length);
 		if(db[n].type === 'photo') {
 			$.sendPhoto(Telegram.InputFile.byId(db[n].link));
@@ -17,6 +17,47 @@ class RandomController extends Telegram.TelegramBaseController {
 		};
 		if(db[n].type === 'text') {
 			$.sendMessage(db[n].text);
+		};
+	}
+	audioHandler($) {
+		var func = function($) {
+			var n = Math.floor(Math.random()*db.length);
+			if(db[n].type === 'voice') {
+				$.sendVoice(Telegram.InputFile.byId(db[n].link));
+			} else {
+				func($);
+			}		
+		}
+		func($);		
+	}
+	videoHandler($) {
+		var func = function($) {
+			var n = Math.floor(Math.random()*db.length);
+			if(db[n].type === 'video') {
+				$.sendVideo(Telegram.InputFile.byId(db[n].link));
+			} else {
+				func($);
+			}		
+		}
+		func($);
+	}
+	fotoHandler($) {
+		var func = function($) {
+			var n = Math.floor(Math.random()*db.length);
+			if(db[n].type === 'photo') {
+				$.sendPhoto(Telegram.InputFile.byId(db[n].link));
+			} else {
+				func($);
+			}		
+		}
+		func($);
+	}
+	get routes() {
+		return {
+			'random': 'randomHandler',
+			'audio': 'audioHandler',
+			'video': 'videoHandler',
+			'foto': 'fotoHandler',
 		};
 	}
 }

@@ -52,7 +52,10 @@ tg.router
 			return false;
 		}
 	}, 'sveglia'), new SvegliaController())
-	.when(new Telegram.TextCommand('/random'), new RandomController())
+	.when(new Telegram.TextCommand('/random', 'random'), new RandomController())
+	.when(new Telegram.TextCommand('/audio', 'audio'), new RandomController())
+	.when(new Telegram.TextCommand('/video', 'video'), new RandomController())
+	.when(new Telegram.TextCommand('/foto', 'foto'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.text != null && 
