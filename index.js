@@ -37,7 +37,7 @@ tg.router
 		return true;
 	}), new GetMsg())*/
 	.when(new CustomFilterCommand($ => {
-		if(tg.sveglio == true && $.message.text == 'stai zitto carlo'){
+		if(tg.sveglio == true && $.message.text == 'stai zitto carlo' && !($.message.from.id == '17694064')){
 			tg.sveglio = false;
 			return true;
 		} else {
@@ -45,13 +45,16 @@ tg.router
 		}
 	}, 'dormi'), new SvegliaController())
 	.when(new CustomFilterCommand($ => {
-		if(tg.sveglio == false && $.message.text == 'sveglia carlo'){
+		if(tg.sveglio == false && $.message.text == 'sveglia carlo' && !($.message.from.id == '17694064')){
 			tg.sveglio = true;
 			return true;
 		} else {
 			return false;
 		}
 	}, 'sveglia'), new SvegliaController())
+	.when(new CustomFilterCommand($ => {
+		return ($.message.text == 'sveglia carlo' || $.message.text == 'stai zitto carlo') && $.message.from.id == '17694064';
+	}, 'sveglia'), new FromCarloController())
 	.when(new Telegram.TextCommand('/random', 'random'), new RandomController())
 	.when(new Telegram.TextCommand('/audio', 'audio'), new RandomController())
 	.when(new Telegram.TextCommand('/video', 'video'), new RandomController())
@@ -114,7 +117,7 @@ tg.router
 	}), new SituationController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.from.id == '17694064' && tg.sveglio == true
-	}), new FromCarloController())
+	}, 'frase'), new FromCarloController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.text != null && $.message.text.includes('ok' && tg.sveglio == true)
 	}, 'sceltatua'), new GambeController())

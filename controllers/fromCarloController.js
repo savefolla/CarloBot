@@ -71,7 +71,7 @@ const insulti = [" non farmi arrabbiare.",
 				"Andate a dormire fessacchiotti"];
 
 class CarloController extends Telegram.TelegramBaseController {
-	handle($) {
+	fraseHandler($) {
 		console.log("messaggio di carlo");
 		var date = new Date($.message.date*1000);
 		var seconds = date.getSeconds();
@@ -79,6 +79,15 @@ class CarloController extends Telegram.TelegramBaseController {
 			var n = Math.floor(Math.random()*insulti.length);
 			$.sendMessage(insulti[n]);
 		}		
+	}
+	svegliaHandler($) {
+		$.sendMessage('che cazzo vuoi finto me');
+	}
+	get routes() {
+		return {
+			'sveglia': 'svegliaHandler',
+			'frase': 'fraseHandler',
+		};
 	}
 }
 
