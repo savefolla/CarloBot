@@ -119,7 +119,7 @@ tg.router
 		return $.message.from.id == '17694064' && tg.sveglio == true
 	}, 'frase'), new FromCarloController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.text != null && $.message.text.includes('ok' && tg.sveglio == true)
+		return $.message.text != null && $.message.text.includes('ok') && tg.sveglio == true
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.text != null && $.message.text.includes('altrimenti') && tg.sveglio == true
