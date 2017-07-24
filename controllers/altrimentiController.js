@@ -4,7 +4,7 @@ const Telegram = require('telegram-node-bot');
 
 class AltrimentiController extends Telegram.TelegramBaseController {
 	handle($) {
-		$.sendMessage('altrimenti ti spezzo le gambe');
+		$.sendMessage('altrimenti vengo in ciascuna delle vostre case e vi spezzo le gambe');
 	}
 }
 
