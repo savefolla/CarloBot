@@ -33,9 +33,9 @@ tg.sveglio = true;
 
 // routing
 tg.router
-	/*.when(new CustomFilterCommand($ => {
+	.when(new CustomFilterCommand($ => {
 		return true;
-	}), new GetMsg())*/
+	}), new GetMsg())
 	.when(new CustomFilterCommand($ => {
 		if(tg.sveglio == true && $.message.text == 'stai zitto carlo' && !($.message.from.id == '17694064')){
 			tg.sveglio = false;
