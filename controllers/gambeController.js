@@ -15,12 +15,16 @@ class GambeController extends Telegram.TelegramBaseController {
 	sceltaTuaHandler($){
 		$.sendMessage('scelta tua');
 	}
+	mahHandler($){
+		$.sendMessage('MAH');
+	}
 	get routes() {
 		return {
 			'spezzo': 'spezzoHandler',
 			'le': 'leHandler',
 			'gambe': 'gambeHandler',
 			'sceltatua': 'sceltaTuaHandler',
+			'mah': 'mahHandler'
 		};
 	}
 }

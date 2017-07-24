@@ -122,6 +122,9 @@ tg.router
 		return $.message.text != null && $.message.text.includes('ok') && tg.sveglio == true
 	}, 'sceltatua'), new GambeController())
 	.when(new CustomFilterCommand($ => {
+		return $.message.text != null && $.message.text.includes('mah') && tg.sveglio == true
+	}, 'mah'), new GambeController())
+	.when(new CustomFilterCommand($ => {
 		return $.message.text != null && $.message.text.includes('altrimenti') && tg.sveglio == true
 	}), new AltrimentiController())
 	.when(new CustomFilterCommand($ => {
