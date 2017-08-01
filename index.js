@@ -128,6 +128,6 @@ tg.router
 		return $.message.text != null && $.message.text.includes('altrimenti') && tg.sveglio == true
 	}), new AltrimentiController())
 	.when(new CustomFilterCommand($ => {
-		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'Meow958' || $.message.chat.username == 'ohalbero';
+		return $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero' || $.message.chat.username == 'joemerlino';
 	}), new AdminController())
 	.otherwise(new OtherwiseController());
