@@ -52,12 +52,24 @@ class RandomController extends Telegram.TelegramBaseController {
 		}
 		func($);
 	}
+	testoHandler($) {
+		var func = function($) {
+			var n = Math.floor(Math.random()*db.length);
+			if(db[n].type === 'text') {
+				$.sendMessage(db[n].text);
+			} else {
+				func($);
+			}		
+		}
+		func($);
+	}
 	get routes() {
 		return {
 			'random': 'randomHandler',
 			'audio': 'audioHandler',
 			'video': 'videoHandler',
 			'foto': 'fotoHandler',
+			'testo': 'testoHandler'
 		};
 	}
 }
