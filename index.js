@@ -60,6 +60,7 @@ tg.router
 	.when(new Telegram.TextCommand('/video', 'video'), new RandomController())
 	.when(new Telegram.TextCommand('/foto', 'foto'), new RandomController())
 	.when(new Telegram.TextCommand('/frase', 'testo'), new RandomController())
+	.when(new Telegram.TextCommand('/latest', 'latest'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.text != null && 

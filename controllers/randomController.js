@@ -63,13 +63,30 @@ class RandomController extends Telegram.TelegramBaseController {
 		}
 		func($);
 	}
+	latestHandler($) {
+		var howMany = 20;
+		var n = Math.floor(Math.random()*10)+db.length-howMany;
+		if(db[n].type === 'photo') {
+			$.sendPhoto(Telegram.InputFile.byId(db[n].link));
+		};
+		if(db[n].type === 'voice') {
+			$.sendVoice(Telegram.InputFile.byId(db[n].link));
+		};
+		if(db[n].type === 'video') {
+			$.sendVideo(Telegram.InputFile.byId(db[n].link));
+		};
+		if(db[n].type === 'text') {
+			$.sendMessage(db[n].text);
+		};
+	}
 	get routes() {
 		return {
 			'random': 'randomHandler',
 			'audio': 'audioHandler',
 			'video': 'videoHandler',
 			'foto': 'fotoHandler',
-			'testo': 'testoHandler'
+			'testo': 'testoHandler',
+			'latest': 'latestHandler'
 		};
 	}
 }
