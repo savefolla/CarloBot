@@ -42,6 +42,18 @@ class AdminController extends Telegram.TelegramBaseController {
 				console.log("aggiunta voice note " + $.message.voice.fileId);
 			}); 			
 		}
+		if($.message.audio) {
+			db.push({
+				'type': 'audio',
+				'link': $.message.audio.fileId
+			});
+			fs.writeFile('db/db.json', JSON.stringify(db), function(err) {
+				if(err) {
+						return console.log(err);
+				}
+				console.log("aggiunto " + $.message.audio.fileId);
+			}); 			
+		}
 		if($.message.video) {
 			db.push({
 				'type': 'video',

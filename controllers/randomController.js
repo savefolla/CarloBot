@@ -24,8 +24,10 @@ class RandomController extends Telegram.TelegramBaseController {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'voice') {
 				$.sendVoice(Telegram.InputFile.byId(db[n].link));
+			} else if(db[n].type === 'audio'){
+					$.sendAudio(Telegram.InputFile.byId(db[n].link));
 			} else {
-				func($);
+						func($);
 			}		
 		}
 		func($);		
@@ -75,6 +77,9 @@ class RandomController extends Telegram.TelegramBaseController {
 		};
 		if(db[n].type === 'video') {
 			$.sendVideo(Telegram.InputFile.byId(db[n].link));
+		};
+		if(db[n].type === 'audio') {
+			$.sendAudio(Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'text') {
 			$.sendMessage(db[n].text);
