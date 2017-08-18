@@ -66,6 +66,7 @@ class RandomController extends Telegram.TelegramBaseController {
 	latestHandler($) {
 		var howMany = 10;
 		var n = Math.floor(Math.random()*(db.length-(db.length-howMany)+1))+(db.length-howMany)-1;
+		console.log("invio "+n+"/"+db.length);
 		if(db[n].type === 'photo') {
 			$.sendPhoto(Telegram.InputFile.byId(db[n].link));
 		};
