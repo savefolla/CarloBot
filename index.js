@@ -28,6 +28,7 @@ const FromCarloController = require('./controllers/fromCarloController');
 const RidiController = require('./controllers/ridiController');
 const AltrimentiController = require('./controllers/altrimentiController');
 const SvegliaController = require('./controllers/svegliaController');
+const LocationController = require('./controllers/locationController');
 
 tg.sveglio = true;
 
@@ -62,6 +63,7 @@ tg.router
 	.when(new Telegram.TextCommand('/frase', 'testo'), new RandomController())
 	.when(new Telegram.TextCommand('/latest', 'latest'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
+	.when(new Telegram.TextCommand('/trovacarlo'), new LocationController())
 	.when(new CustomFilterCommand($ => {
 		return $.message.text != null && 
 		tg.sveglio == true &&
