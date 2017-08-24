@@ -21,8 +21,8 @@ const posizioni = [
   'in torre',
   'a casa',
   'a casa',
-  'a casa che guarda dragonball',
-  'a casa che gioca ai carri armati',
+  'a casa che guardo dragonball',
+  'a casa che gioco ai carri armati',
   'a letto',
   'a letto',
   'a letto',
@@ -33,7 +33,7 @@ class LocationController extends Telegram.TelegramBaseController {
 	handle($) {
 		var date = new Date($.message.date*1000);
     var hours = date.getHours();
-    $.sendMessage('Carlo è '+posizioni[hours]);
+    $.sendMessage('sono '+posizioni[hours]);
 	}
 }
 
