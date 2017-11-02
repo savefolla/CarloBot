@@ -72,7 +72,7 @@ class RandomController extends Telegram.TelegramBaseController {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'sticker') {
-				$.sendMessage(db[n].text);
+				$.sendSticker(db[n].link);
 			} else {
 				func($);
 			}		
@@ -109,7 +109,8 @@ class RandomController extends Telegram.TelegramBaseController {
 			'video': 'videoHandler',
 			'foto': 'fotoHandler',
 			'testo': 'testoHandler',
-			'latest': 'latestHandler'
+			'latest': 'latestHandler',
+			'sticker': 'stickerHandler'
 		};
 	}
 }
