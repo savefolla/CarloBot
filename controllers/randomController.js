@@ -18,6 +18,9 @@ class RandomController extends Telegram.TelegramBaseController {
 		if(db[n].type === 'text') {
 			$.sendMessage(db[n].text);
 		};
+		if(db[n].type === 'sticker') {
+			$.sendSticker(db[n].link);
+		}
 	}
 	audioHandler($) {
 		var func = function($) {
@@ -65,6 +68,17 @@ class RandomController extends Telegram.TelegramBaseController {
 		}
 		func($);
 	}
+	stickerHandler($) {
+		var func = function($) {
+			var n = Math.floor(Math.random()*db.length);
+			if(db[n].type === 'sticker') {
+				$.sendSticker(db[n].link);
+			} else {
+				func($);
+			}		
+		}
+		func($);
+	}					
 	latestHandler($) {
 		var howMany = 10;
 		var n = Math.floor(Math.random()*(db.length-(db.length-howMany)+1))+(db.length-howMany)-1;
@@ -84,6 +98,9 @@ class RandomController extends Telegram.TelegramBaseController {
 		if(db[n].type === 'text') {
 			$.sendMessage(db[n].text);
 		};
+		if(db[n].type === 'sticker') {
+			$.sendSticker(db[n].link);
+		}
 	}
 	get routes() {
 		return {
@@ -92,7 +109,8 @@ class RandomController extends Telegram.TelegramBaseController {
 			'video': 'videoHandler',
 			'foto': 'fotoHandler',
 			'testo': 'testoHandler',
-			'latest': 'latestHandler'
+			'latest': 'latestHandler',
+			'sticker': 'stickerHandler'
 		};
 	}
 }

@@ -62,6 +62,7 @@ tg.router
 	.when(new Telegram.TextCommand('/foto', 'foto'), new RandomController())
 	.when(new Telegram.TextCommand('/frase', 'testo'), new RandomController())
 	.when(new Telegram.TextCommand('/latest', 'latest'), new RandomController())
+	.when(new Telegram.TextCommand('/sticker', 'sticker'), new RandomController())
 	.when(new Telegram.TextCommand('/donate'), new DonateController())
 	.when(new Telegram.TextCommand('/trovacarlo'), new LocationController())
 	.when(new CustomFilterCommand($ => {

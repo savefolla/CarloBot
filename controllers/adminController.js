@@ -15,7 +15,7 @@ class AdminController extends Telegram.TelegramBaseController {
 				if(err) {
 						return console.log(err);
 				}
-                $.sendMessage("aggiunto testo " + $.message.text);
+				console.log("aggiunto testo " + $.message.text);
 			}); 			
 		}
 		if($.message.photo) {
@@ -27,7 +27,7 @@ class AdminController extends Telegram.TelegramBaseController {
 				if(err) {
 						return console.log(err);
 				}
-                $.sendMessage("aggiunta foto " + $.message.photo[$.message.photo.length-1].fileId);
+				console.log("aggiunta foto " + $.message.photo[$.message.photo.length-1].fileId);
 			}); 			
 		}
 		if($.message.voice) {
@@ -39,7 +39,7 @@ class AdminController extends Telegram.TelegramBaseController {
 				if(err) {
 						return console.log(err);
 				}
-                $.sendMessage("aggiunta voice note " + $.message.voice.fileId);
+				console.log("aggiunta voice note " + $.message.voice.fileId);
 			}); 			
 		}
 		if($.message.audio) {
@@ -51,7 +51,7 @@ class AdminController extends Telegram.TelegramBaseController {
 				if(err) {
 						return console.log(err);
 				}
-				$.sendMessage("aggiunto " + $.message.audio.fileId);
+				console.log("aggiunto " + $.message.audio.fileId);
 			}); 			
 		}
 		if($.message.video) {
@@ -63,7 +63,19 @@ class AdminController extends Telegram.TelegramBaseController {
 				if(err) {
 						return console.log(err);
 				}
-				$.sendMessage("aggiunto video " + $.message.video.fileId);
+				console.log("aggiunto video " + $.message.video.fileId);
+			}); 			
+		}
+		if($.message.sticker) {
+			db.push({
+				'type': 'sticker',
+				'link': $.message.sticker.fileId
+			});
+			fs.writeFile('db/db.json', JSON.stringify(db), function(err) {
+				if(err) {
+						return console.log(err);
+				}
+				console.log("aggiunto sticker " + $.message.sticker.fileId);
 			}); 			
 		}
 	}
