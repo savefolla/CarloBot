@@ -2,6 +2,7 @@
 
 const Telegram = require('telegram-node-bot');
 const db = require('../db/db');
+const sendMessage = require('./sendMessage');
 
 class RandomController extends Telegram.TelegramBaseController {
 	randomHandler($) {
@@ -61,7 +62,7 @@ class RandomController extends Telegram.TelegramBaseController {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'text') {
-				$.sendMessage(db[n].text);
+				sendMessage($, db[n].text);
 			} else {
 				func($);
 			}		
