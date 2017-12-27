@@ -2,36 +2,36 @@
 
 const Telegram = require('telegram-node-bot');
 const db = require('../db/db');
-const sendMessage = require('./sendMessage');
+const messageService = require('./sendMessage');
 
 class RandomController extends Telegram.TelegramBaseController {
 	randomHandler($) {
 		var n = Math.floor(Math.random()*db.length);
 		if(db[n].type === 'photo') {
-			$.sendPhoto(Telegram.InputFile.byId(db[n].link));
+            messageService.sendPhoto($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'voice') {
-			$.sendVoice(Telegram.InputFile.byId(db[n].link));
+            messageService.sendVoice($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'video') {
-			$.sendVideo(Telegram.InputFile.byId(db[n].link));
+            messageService.sendVideo($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'text') {
-			$.sendMessage(db[n].text);
+            messageService.sendMessage($, db[n].text);
 		};
 		if(db[n].type === 'sticker') {
-			$.sendSticker(db[n].link);
+            messageService.sendSticker($, db[n].link);
 		}
 	}
 	audioHandler($) {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'voice') {
-				$.sendVoice(Telegram.InputFile.byId(db[n].link));
+                messageService.sendVoice($, Telegram.InputFile.byId(db[n].link));
 			} else if(db[n].type === 'audio'){
-					$.sendAudio(Telegram.InputFile.byId(db[n].link));
+                messageService.sendAudio($, Telegram.InputFile.byId(db[n].link));
 			} else {
-						func($);
+				func($);
 			}		
 		}
 		func($);		
@@ -40,7 +40,7 @@ class RandomController extends Telegram.TelegramBaseController {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'video') {
-				$.sendVideo(Telegram.InputFile.byId(db[n].link));
+                messageService.sendVideo($, Telegram.InputFile.byId(db[n].link));
 			} else {
 				func($);
 			}		
@@ -51,7 +51,7 @@ class RandomController extends Telegram.TelegramBaseController {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'photo') {
-				$.sendPhoto(Telegram.InputFile.byId(db[n].link));
+                messageService.sendPhoto($, Telegram.InputFile.byId(db[n].link));
 			} else {
 				func($);
 			}		
@@ -62,7 +62,7 @@ class RandomController extends Telegram.TelegramBaseController {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'text') {
-				sendMessage($, db[n].text);
+                messageService.sendMessage($, db[n].text);
 			} else {
 				func($);
 			}		
@@ -73,7 +73,7 @@ class RandomController extends Telegram.TelegramBaseController {
 		var func = function($) {
 			var n = Math.floor(Math.random()*db.length);
 			if(db[n].type === 'sticker') {
-				$.sendSticker(db[n].link);
+                messageService.sendSticker($, db[n].link);
 			} else {
 				func($);
 			}		
@@ -85,22 +85,22 @@ class RandomController extends Telegram.TelegramBaseController {
 		var n = Math.floor(Math.random()*(db.length-(db.length-howMany)+1))+(db.length-howMany)-1;
 		console.log("invio "+n+"/"+db.length);
 		if(db[n].type === 'photo') {
-			$.sendPhoto(Telegram.InputFile.byId(db[n].link));
+            messageService.sendPhoto($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'voice') {
-			$.sendVoice(Telegram.InputFile.byId(db[n].link));
+            messageService.sendVoice($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'video') {
-			$.sendVideo(Telegram.InputFile.byId(db[n].link));
+            messageService.sendVideo($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'audio') {
-			$.sendAudio(Telegram.InputFile.byId(db[n].link));
+            messageService.sendAudio($, Telegram.InputFile.byId(db[n].link));
 		};
 		if(db[n].type === 'text') {
-			$.sendMessage(db[n].text);
+            messageService.sendMessage($, db[n].text);
 		};
 		if(db[n].type === 'sticker') {
-			$.sendSticker(db[n].link);
+            messageService.sendSticker($, db[n].link);
 		}
 	}
 	get routes() {
