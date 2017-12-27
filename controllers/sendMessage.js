@@ -1,5 +1,5 @@
 
-const milliseconds = 1000//*60*60*24;
+const milliseconds = 1000*60*60*24;
 
 exports.sendPhoto = ($, message) => {
     $.sendPhoto(message).then((res) => {
