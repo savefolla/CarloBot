@@ -133,6 +133,6 @@ tg.router
 		return $.message.text != null && $.message.text.includes('altrimenti') && tg.sveglio == true
 	}), new AltrimentiController())
 	.when(new CustomFilterCommand($ => {
-		return !($.message.from.id == '17694064') && $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero' || $.message.chat.username == 'joemerlino' || $.message.chat.username == 'Meow958';
+		return !($.message.from.id == '17694064') && $.message.chat.username == 'savefolla' || $.message.chat.username == 'Sparkolo' || $.message.chat.username == 'ohalbero' || $.message.chat.username == 'joemerlino' || $.message.chat.username == 'ale_bragagnolo';
 	}), new AdminController())
 	.otherwise(new OtherwiseController());
